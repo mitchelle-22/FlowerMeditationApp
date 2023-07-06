@@ -25,8 +25,11 @@ import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.technical.flowermeditation.ui.theme.FlowerMeditationTheme
 
 class MainActivity : ComponentActivity() {
@@ -70,8 +73,15 @@ fun HeaderaProfileComponent(){
                .size(50.dp)
                .clip(CircleShape)
            )
-           Column(modifier = Modifier) {
-               
+           Column(modifier = Modifier.padding(start = 10.dp)) {
+               Text(
+                   text = "Welcome back",
+                   fontFamily = FontFamily.SansSerif,
+                   fontSize = 14.sp,
+                   textAlign = TextAlign.Start
+
+               )
+
            }
 
            
@@ -80,10 +90,10 @@ fun HeaderaProfileComponent(){
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FlowerMeditationTheme {
-        Greeting("Android")
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    FlowerMeditationTheme {
+//        Greeting("Android")
+//    }
+//}
