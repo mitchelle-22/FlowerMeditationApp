@@ -13,16 +13,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -37,63 +33,70 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FlowerMeditationTheme {
-                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    Greeting("Android")
                 Column(
-
-                ){
-                    var modifier = Modifier
+                    modifier = Modifier
                         .background(Gray)
-                        .fillMaxSize()
+                    .fillMaxSize()
+                ){
+                    HeaderProfileComponent()
+
                 }
 
                 }
             }
         }
+    @Composable
+    fun HeaderProfileComponent() {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 15.dp, end = 15.dp, top = 15.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+                Image(
+                    painter = painterResource(id = R.drawable.Michelle),
+                    contentDescription = "Profile Picture",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(50.dp)
+                        .clip(CircleShape)
+                )
+                Column(modifier = Modifier.padding(start = 10.dp)) {
+                    Text(
+                        text = "Welcome back",
+                        fontFamily = FontFamily.SansSerif,
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Start
+
+                    )
+                    Text(
+                        text = "Michelle Ramela",
+                        fontFamily = FontFamily.Serif,
+                        fontSize = 20.sp,
+                        textAlign = TextAlign.Start
+
+                    )
+                }
+
+
+            }
+        }
     }
-
-
-@Composable
-fun HeaderaProfileComponent(){
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 15.dp, end = 15.dp, top = 15.dp)
-    ){
-       Row(verticalAlignment = Alignment.CenterVertically) {
-           Image(painter = painterResource(id = R.drawable.profilepicture),
-               contentDescription = "Profile Picture",
-           contentScale = ContentScale.Crop,
-           modifier = Modifier
-               .size(50.dp)
-               .clip(CircleShape)
-           )
-           Column(modifier = Modifier.padding(start = 10.dp)) {
-               Text(
-                   text = "Welcome back",
-                   fontFamily = FontFamily.SansSerif,
-                   fontSize = 14.sp,
-                   textAlign = TextAlign.Start
-
-               )
-
-           }
-
-           
-       }
-    }
-
 }
+
+
+
+
+
 
 //@Preview(showBackground = true)
 //@Composable
 //fun GreetingPreview() {
 //    FlowerMeditationTheme {
-//        Greeting("Android")
+////        Greeting("Android")
 //    }
 //}
