@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
             )
             {
                 Image(
-                    painter = painterResource(id = R.drawable.Michelle),
+                    painter = painterResource(id = R.drawable.michelle),
                     contentDescription = "Profile Picture",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
