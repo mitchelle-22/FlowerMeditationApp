@@ -1,5 +1,6 @@
 package com.technical.flowermeditation
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,12 +14,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -36,7 +45,7 @@ class MainActivity : ComponentActivity() {
                 Column(
                     modifier = Modifier
                         .background(Gray)
-                    .fillMaxSize()
+                        .fillMaxSize()
                 ){
                     HeaderProfileComponent()
 
@@ -45,6 +54,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun HeaderProfileComponent() {
         Row(
@@ -54,9 +64,7 @@ class MainActivity : ComponentActivity() {
                 .padding(start = 15.dp, end = 15.dp, top = 15.dp)
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
-            )
-            {
+                verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = R.drawable.michelle),
                     contentDescription = "Profile Picture",
@@ -83,6 +91,12 @@ class MainActivity : ComponentActivity() {
                 }
 
 
+            }
+            BadgedBox(badge = { Badge(Modifier.background(Green)) }) {
+             Icon(
+                Icons.Default.Notifications,
+                contentDescription = "Notification"
+             )
             }
         }
     }
