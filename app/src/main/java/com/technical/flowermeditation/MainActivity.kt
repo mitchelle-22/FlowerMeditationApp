@@ -1,6 +1,5 @@
 package com.technical.flowermeditation
 
-import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,6 +16,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +24,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,9 +34,12 @@ import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.technical.flowermeditation.ui.theme.FlowerMeditationTheme
@@ -50,6 +55,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                 ){
                     HeaderProfileComponent()
+
 
                 }
 
@@ -106,10 +112,40 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun SearchInputComponent()
     {
+        val textState = remember { mutableStateOf(TextFieldValue()) }
+
+        val customFontFamily = FontFamily(
+            Font(R.font.nunitolight) // Make sure 'nunitolight.ttf' is in the 'res/font' folder
+        )
         OutlinedTextField(
-            value = "",
-            onValueChange ={},
+            value = textState.value,
+            onValueChange = { newValue -> textState.value = newValue },
+            modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
+            placeholder ={
+                Text(
+                    text = "Search",
+                    fontFamily = customFontFamily,// Add the desired font family here
+                    fontSize = 16.sp,
+                    color = Color.Gray
+                )
+
+                         },
+            leadingIcon = {
+                Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon")
+            },
+            trailingIcon = {
+                           Icon(painter = painterResource(id = R.drawable.filter),
+                               modifier = Modifier.size(24.dp),
+                               contentDescription = "Filter icon",
+                           )
+            },
+            textStyle = TextStyle.Default.copy(
+                fontFamily = FontFamily.Default, // Replace with the default font family or any other desired font
+                fontSize = 16.sp,
+                color = Color.Black
+            ),
+            visualTransformation = VisualTransformation.None,
 
 
         )
