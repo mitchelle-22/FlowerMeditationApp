@@ -30,8 +30,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Green
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -40,6 +43,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.technical.flowermeditation.ui.theme.FlowerMeditationTheme
@@ -126,20 +130,14 @@ class MainActivity : ComponentActivity() {
                 Text(
                     text = "Search",
                     fontFamily = customFontFamily,// Add the desired font family here
-                    fontSize = 16.sp,
-                    color = Color.Gray
-                )
-
-                         },
+                )},
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon")
             },
+
             trailingIcon = {
-                           Icon(painter = painterResource(id = R.drawable.filter),
-                               modifier = Modifier.size(24.dp),
-                               contentDescription = "Filter icon",
-                           )
-            },
+                // Replace Icons.Filled.Search with the desired icon
+                CustomTrailingIcon(Icons.Filled.Search, Color.Gray)},
             textStyle = TextStyle.Default.copy(
                 fontFamily = FontFamily.Default, // Replace with the default font family or any other desired font
                 fontSize = 16.sp,
@@ -148,7 +146,24 @@ class MainActivity : ComponentActivity() {
             visualTransformation = VisualTransformation.None,
 
 
+
+
         )
+
+    }
+    @Composable
+    fun CustomTrailingIcon(icon: ImageVector, color: Color) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = color,
+        )
+
+    }
+    @Preview
+    @Composable
+    fun PreviewSearchInputComponent() {
+        SearchInputComponent()
     }
 }
 
