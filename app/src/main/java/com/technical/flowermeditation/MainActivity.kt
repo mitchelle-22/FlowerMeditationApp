@@ -23,6 +23,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -116,43 +117,85 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun SearchInputComponent()
     {
-        val textState = remember { mutableStateOf(TextFieldValue()) }
 
         val customFontFamily = FontFamily(
-            Font(R.font.nunitolight) // Make sure 'nunitolight.ttf' is in the 'res/font' folder
+            Font(R.font.nunitolight)
         )
-        OutlinedTextField(
-            value = textState.value,
-            onValueChange = { newValue -> textState.value = newValue },
-            modifier = Modifier.fillMaxWidth(),
+        OutlinedTextField(value = "", onValueChange ={},
             shape = RoundedCornerShape(8.dp),
-            placeholder ={
-                Text(
-                    text = "Search",
-                    fontFamily = customFontFamily,// Add the desired font family here
-                )},
+            placeholder = {Text(text= "Search", fontFamily = customFontFamily)},
             leadingIcon = {
-                Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon")
+                Icon(
+                    painter = painterResource(id = R.drawable.filter),
+                    modifier = Modifier.size(24.dp),
+                    contentDescription = "Filter Icon",
+                    tint = Color.Gray
+                )
             },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 15.dp, start = 15.dp, end = 15.dp)
+                .background(Color.White),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.LightGray,
+                unfocusedBorderColor = Color.White,
+                cursorColor = Color.LightGray,
 
-            trailingIcon = {
-                // Replace Icons.Filled.Search with the desired icon
-                CustomTrailingIcon(Icons.Filled.Search, Color.Gray)},
-            textStyle = TextStyle.Default.copy(
-                fontFamily = FontFamily.Default, // Replace with the default font family or any other desired font
-                fontSize = 16.sp,
-                color = Color.Black
-            ),
-            visualTransformation = VisualTransformation.None,
-
-
-
+            ) ,
 
         )
+//        val textState = remember { mutableStateOf(TextFieldValue()) }
+//
+//        val customFontFamily = FontFamily(
+//            Font(R.font.nunitolight) // Make sure 'nunitolight.ttf' is in the 'res/font' folder
+//        )
+//        OutlinedTextField(
+//            value = textState.value,
+//            onValueChange = { newValue -> textState.value = newValue },
+//            modifier = Modifier.fillMaxWidth(),
+//            shape = RoundedCornerShape(8.dp),
+//            placeholder ={
+//                Text(
+//                    text = "Search",
+//                    fontFamily = customFontFamily,// Add the desired font family here
+//                )},
+//            leadingIcon = {
+//                Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon")
+//            },
+//
+//            trailingIcon = {
+//                // Replace Icons.Filled.Search with the desired icon
+//              //  CustomTrailingIcon(Icons.Filled.Search, Color.Gray)
+//
+//
+//                           },
+//
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(top = 15.dp, start = 15.dp, end = 15.dp)
+//                .background(Color.White, RoundedCornerShape(8.dp)),
+//            colors = TextFieldDefaults.outlinedTextFieldColors(
+//                focusedBorderColor = Color.LightGray,
+//                unfocusedBorderColor = Color.White,
+//                cursorColor = Color.LightGray,
+//
+//            ),
+//            textStyle = TextStyle.Default.copy(
+//                fontFamily = FontFamily.Default, // Replace with the default font family or any other desired font
+//                fontSize = 16.sp,
+//                color = Color.Black
+//            ),
+//            
+//            visualTransformation = VisualTransformation.None,
+//
+//
+//
+//
+//        )
 
     }
     @Composable
-    fun CustomTrailingIcon(icon: ImageVector, color: Color) {
+    fun Icon(icon: ImageVector, color: Color) {
         Icon(
             imageVector = icon,
             contentDescription = null,
